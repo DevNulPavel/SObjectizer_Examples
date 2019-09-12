@@ -1,0 +1,736 @@
+/*!
+ * \brief Main SObjectizer-5 namespace
+ */
+namespace so_5
+{
+	/*!
+	 * \brief Public API functions of SObjectizer-5.
+	 */
+	namespace api
+	{
+		/*!
+		 * \brief Internal implemetation details of public API functions.
+		 */
+		namespace impl
+		{
+		} /* namespace so_5::api::impl */
+
+	} /* namespace so_5::api */
+
+	/*!
+	 * \brief Some reusable and low-level classes/functions which can
+	 * be used in public header files.
+	 * \since
+	 * v.5.5.4
+	 */
+	namespace details {
+
+		/*!
+		 * \brief Helper templates for detection of lambda-type traits.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace lambda_traits {
+
+			/*!
+			 * \brief Internal implementation details.
+			 * \since
+			 * v.5.5.4
+			 */
+			namespace impl {
+
+			} /* namespace impl */
+
+		} /* namespace lambda_traits */
+
+		/*!
+		 * \brief Implementation details for implementation of rollback on
+		 * exception helper.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace rollback_on_exception_details {
+		} /* namespace rollback_on_exception_details */
+
+		/*!
+		 * \brief Helpers for manipulation with standard C++ I/O streams.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace ios_helpers {
+		} /* namespace ios_helpers */
+
+	} /* namespace details */
+
+
+	/*!
+	 * \brief Event dispatchers.
+	 */
+	namespace disp
+	{
+		/*!
+		 * \brief Various stuff related to MPMC event queue implementation and tuning.
+		 * \since
+		 * v.5.5.11
+		 */
+		namespace mpmc_queue_traits
+		{
+			/*!
+			 * \brief Implementation of combined lock for MPMC event queue.
+			 * \since
+			 * v.5.5.11
+			 */
+			namespace combined_lock
+			{
+			} /* namespace combined_lock */
+
+			/*!
+			 * \brief Implementation of simple lock for MPMC event queue.
+			 * \since
+			 * v.5.5.11
+			 */
+			namespace simple_lock
+			{
+			} /* namespace simple_lock */
+
+		} /* namespace mpsc_queue_traits */
+
+		/*!
+		 * \brief Various stuff related to MPSC event queue implementation and tuning.
+		 * \since
+		 * v.5.5.10
+		 */
+		namespace mpsc_queue_traits
+		{
+			/*!
+			 * \brief Implementation details for MPSC event queue stuff.
+			 * \since
+			 * v.5.5.10
+			 */
+			namespace impl
+			{
+			} /* namespace impl */
+		} /* namespace mpsc_queue_traits */
+
+		/*!
+		 * \brief Active groups dispatcher.
+		 */
+		namespace active_group
+		{
+			/*!
+			 * \brief Active groups dispatcher implemetation details.
+			 */
+			namespace impl
+			{
+			} /* namespace impl */
+
+		} /* namespace active_group */
+
+		/*!
+		 * \brief Active objects dispatcher.
+		 */
+		namespace active_obj
+		{
+			/*!
+			 * \brief Active objects dispatcher implemetation details.
+			 */
+			namespace impl
+			{
+			} /* namespace impl */
+
+		} /* namespace active_obj */
+
+		/*!
+		 * \brief Advanced thread pool dispatcher.
+		 */
+		namespace adv_thread_pool {
+
+			/*!
+			 * \brief Internal implementation details of advanced thread pool dispatcher.
+			 */
+			namespace impl {
+
+			} /* namespace impl */
+
+		} /* namespace adv_thread_pool */
+
+
+		/*!
+		 * \brief Dispatcher with single working thread.
+		 */
+		namespace one_thread
+		{
+			/*!
+			 * \brief Implementation details for dispatcher with
+			 * single working thread.
+			 */
+			namespace impl
+			{
+			} /* namespace impl */
+
+		} /* namespace one_thread */
+
+		/*!
+		 * \brief Reusable components for dispatchers.
+		 *
+		 * This namespace contains classes and functions which can
+		 * be reused by various types of dispatchers.
+		 */
+		namespace reuse
+		{
+			/*!
+			 * \brief Implementation of various types of locks to be used
+			 * inside dispatchers.
+			 */
+			namespace locks {
+			} /* namespace locks */
+
+			/*!
+			 * \brief Helper tools for implementation of run-time monitoring
+			 * for thread-pool-like dispatchers.
+			 * \since
+			 * v.5.5.4
+			 */
+			namespace thread_pool_stats {
+			} /* namespace thread_pool_stats */
+
+			/*!
+			 * \brief Implemetation details of dispatcher's working thread.
+			 */
+			namespace work_thread
+			{
+			} /* namespace work_thread */
+
+		} /* namespace reuse */
+
+		/*!
+		 * \brief Thread pool dispatcher.
+		 */
+		namespace thread_pool {
+
+			/*!
+			 * \brief Reusable implementation of some thread pool dispatcher
+			 * functionality which can be used in other thread-pool-like dispatchers.
+			 */
+			namespace common_implementation {
+			} /* namespace common_implementation */
+
+			/*!
+			 * \brief Internal implementation details of thread pool dispatcher.
+			 */
+			namespace impl {
+
+			} /* namespace impl */
+
+		} /* namespace thread_pool */
+
+		/*!
+		 * \brief Dispatchers with dedicated threads for every priority.
+		 * \since
+		 * v.5.5.8
+		 */
+		namespace prio_dedicated_threads
+		{
+			/*!
+			 * \brief Dispatcher which creates exactly one thread per priority.
+			 * \since
+			 * v.5.5.8
+			 */
+			namespace one_per_prio {
+
+				/*!
+				 * \brief Implementation details for dispatcher with one thread per priority.
+				 * \since
+				 * v.5.5.8
+				 */
+				namespace impl {
+				} /* namespace impl */
+
+			} /* namespace one_per_prio */
+
+		} /* namespace prio_dedicated_threads */
+
+		/*!
+		 * \brief Dispatcher with one working thread for events of all priorities.
+		 * \since
+		 * v.5.5.8
+		 */
+		namespace prio_one_thread {
+
+			/*!
+			 * \brief Dispatcher which handles events of different priorities in
+			 * round-robin maner.
+			 * \since
+			 * v.5.5.8
+			 */
+			namespace quoted_round_robin {
+
+				/*!
+				 * \brief Implementation details for dispatcher with round-robin
+				 * policy of handling prioritized events.
+				 * \since
+				 * v.5.5.8
+				 */
+				namespace impl {
+
+				} /* namespace impl */
+
+			} /* namespace quoted_round_robin */
+
+			/*!
+			 * \brief Reusable code for dispatchers with one working thread for
+			 * events of all priorities.
+			 * \since
+			 * v.5.5.8
+			 */
+			namespace reuse {
+
+			} /* namespace reuse */
+
+			/*!
+			 * \brief Dispatcher which handles events in strict order (from
+			 * highest priority to lowest).
+			 * \since
+			 * v.5.5.8
+			 */
+			namespace strictly_ordered {
+
+				/*!
+				 * \brief Implementation details for dispatcher which handles
+				 * prioritized events in strict order.
+				 * \since
+				 * v.5.5.8
+				 */
+				namespace impl {
+
+				} /* namespace impl */
+
+			} /* namespace strictly_ordered */
+
+		} /* namespace prio_one_thread */
+
+	} /* namespace disp */
+
+	/*!
+	 * \brief Implementation details of error_logging facility.
+	 */
+	namespace log_msg_details {
+	} /* namespace log_msg_details */
+
+	/*!
+	 * \brief Details of SObjectizer run-time implementations.
+	 */
+	namespace impl
+	{
+		/*!
+		 * \brief Implementation details related to cooperations and
+		 * agents repository.
+		 */
+		namespace agent_core_details {
+		} /* namespace agent_core_details */
+
+		/*!
+		 * \brief Details of cooperation deregistration implementation
+		 */
+		namespace coop_dereg
+		{
+		} /* namespace coop_dereg */
+
+		/*!
+		 * \brief Various helpers for message delivery tracing mechanism.
+		 * \since
+		 * v.5.5.9
+		 */
+		namespace msg_tracing_helpers
+		{
+			/*!
+			 * \brief Low-level details of message delivery tracing
+			 * implementation.
+			 * \since
+			 * v.5.5.9
+			 */
+			namespace details
+			{
+			} /* namespace details */
+
+		} /* namespace msg_tracing_helpers */
+
+		/*!
+		 * \brief Implementation details for MPMC mboxes.
+		 * \since
+		 * v.5.5.9
+		 */
+		namespace local_mbox_details
+		{}
+	} /* namespace impl */
+
+	/*!
+	 * \brief Enumeration of cooperation deregistration reasons.
+	 * \since
+	 * v.5.2.3
+	 */
+	namespace dereg_reason
+	{
+	} /* namespace dereg_reason */
+
+	/*!
+	 * \brief Some low-level implemetation details which can be used
+	 * in public header files.
+	 */
+	namespace details {
+	} /* namespace details */
+
+	/*!
+	 * \brief All stuff related to message limits.
+	 * \since
+	 * v.5.5.4
+	 */
+	namespace message_limit {
+
+		/*!
+		 * \brief Internal implementation of message limits related stuff.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace impl {
+
+		} /* namespace impl */
+
+	} /* namespace message_limit */
+
+	/*!
+	 * \brief All stuff related to run-time monitoring and statistics.
+	 * \since
+	 * v.5.5.4
+	 */
+	namespace stats {
+
+		/*!
+		 * \brief Internal implementation of run-time monitoring
+		 * and statistics related stuff.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace impl {
+
+		} /* namespace impl */
+
+		/*!
+		 * \brief Declarations of messages used by run-time monitoring
+		 * and statistics.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace messages {
+		} /* namespace messages */
+
+		/*!
+		 * \brief Predefined prefixes of data-sources.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace prefixes {
+		} /* namespace prefixes */
+
+		/*!
+		 * \brief Predefined suffixes of data-sources.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace suffixes {
+		} /* namespace suffixes */
+
+	} /* namespace stats */
+
+	/*!
+	 * \brief All code related to implementation of SObjectizer run-time.
+	 * \deprecated Obsolete and will be removed in v.5.6.0.
+	 */
+	namespace rt
+	{
+		/*!
+		 * \brief Details of SObjectizer run-time implementations.
+		 * \deprecated Obsolete and will be removed in v.5.6.0.
+		 */
+		namespace impl
+		{
+			/*!
+			 * \brief Implementation details related to cooperations and
+			 * agents repository.
+			 * \deprecated Obsolete and will be removed in v.5.6.0.
+			 */
+			namespace agent_core_details {
+			} /* namespace agent_core_details */
+
+			/*!
+			 * \brief Details of cooperation deregistration implementation
+			 * \deprecated Obsolete and will be removed in v.5.6.0.
+			 */
+			namespace coop_dereg
+			{
+			} /* namespace coop_dereg */
+
+			/*!
+			 * \brief Various helpers for message delivery tracing mechanism.
+			 * \deprecated Obsolete and will be removed in v.5.6.0.
+			 * \since
+			 * v.5.5.9
+			 */
+			namespace msg_tracing_helpers
+			{
+				/*!
+				 * \brief Low-level details of message delivery tracing
+				 * implementation.
+				 * \deprecated Obsolete and will be removed in v.5.6.0.
+				 * \since
+				 * v.5.5.9
+				 */
+				namespace details
+				{
+				} /* namespace details */
+
+			} /* namespace msg_tracing_helpers */
+
+		} /* namespace impl */
+
+		/*!
+		 * \brief Enumeration of cooperation deregistration reasons.
+		 * \deprecated Obsolete and will be removed in v.5.6.0.
+		 * \since
+		 * v.5.2.3
+		 */
+		namespace dereg_reason
+		{
+		} /* namespace dereg_reason */
+
+		/*!
+		 * \brief Some low-level implemetation details which can be used
+		 * in public header files.
+		 * \deprecated Obsolete and will be removed in v.5.6.0.
+		 */
+		namespace details {
+		} /* namespace details */
+
+		/*!
+		 * \brief All stuff related to message limits.
+		 * \deprecated Obsolete and will be removed in v.5.6.0.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace message_limit {
+
+			/*!
+			 * \brief Internal implementation of message limits related stuff.
+			 * \deprecated Obsolete and will be removed in v.5.6.0.
+			 * \since
+			 * v.5.5.4
+			 */
+			namespace impl {
+
+			} /* namespace impl */
+
+		} /* namespace message_limit */
+
+		/*!
+		 * \brief All stuff related to run-time monitoring and statistics.
+		 * \deprecated Obsolete and will be removed in v.5.6.0.
+		 * \since
+		 * v.5.5.4
+		 */
+		namespace stats {
+
+			/*!
+			 * \brief Internal implementation of run-time monitoring
+			 * and statistics related stuff.
+			 * \deprecated Obsolete and will be removed in v.5.6.0.
+			 * \since
+			 * v.5.5.4
+			 */
+			namespace impl {
+
+			} /* namespace impl */
+
+			/*!
+			 * \brief Declarations of messages used by run-time monitoring
+			 * and statistics.
+			 * \deprecated Obsolete and will be removed in v.5.6.0.
+			 * \since
+			 * v.5.5.4
+			 */
+			namespace messages {
+			} /* namespace messages */
+
+			/*!
+			 * \brief Predefined prefixes of data-sources.
+			 * \deprecated Obsolete and will be removed in v.5.6.0.
+			 * \since
+			 * v.5.5.4
+			 */
+			namespace prefixes {
+			} /* namespace prefixes */
+
+			/*!
+			 * \brief Predefined suffixes of data-sources.
+			 * \deprecated Obsolete and will be removed in v.5.6.0.
+			 * \since
+			 * v.5.5.4
+			 */
+			namespace suffixes {
+			} /* namespace suffixes */
+
+			/*!
+			 * \brief Various stuff for simplify implementation of
+			 * work thread activity tracking.
+			 */
+			namespace activity_tracking_stuff {
+			} /* namespace activity_tracking_stuff */
+
+		} /* namespace stats */
+
+	} /* namespace rt */
+
+	/*!
+	 * \deprecated
+	 * \brief Old timer thread related stuff.
+	 *
+	 * This namespace is kept for compatibility with previous versions.
+	 */
+	namespace timer_thread
+	{
+	} /* namespace timer_thread */
+
+	/*!
+	 * \brief Timers implementation details.
+	 * \since
+	 * v.5.5.0
+	 */
+	namespace timers_details
+	{
+	} /* namespace timers_details */
+
+	/*!
+	 * \brief Helpers for working with priorities.
+	 * \since
+	 * v.5.5.8
+	 */
+	namespace prio {
+	} /* namespace prio */
+
+	/*!
+	 * \brief Public part of message delivery tracing mechanism.
+	 * \since
+	 * v.5.5.9
+	 */
+	namespace msg_tracing
+	{
+		/*!
+		 * \brief Implementation details of message delivery tracing mechanism.
+		 * \since
+		 * v.5.5.9
+		 */
+		namespace impl
+		{
+		} /* namespace impl */
+
+	} /* namespace msg_tracing */
+
+	/*!
+	 * \brief Various properties and parameters of message chains.
+	 * \since
+	 * v.5.5.13
+	 */
+	namespace mchain_props
+	{
+		/*!
+		 * \brief Implementation details.
+		 *
+		 * \since
+		 * v.5.5.13
+		 */
+		namespace details
+		{
+		} /* namespace details */
+
+	} /* namespace mchain_props */
+
+	/*!
+	 * \brief Various implementations of environment_infrastructure.
+	 *
+	 * \since
+	 * v.5.5.19
+	 */
+	namespace env_infrastructures
+	{
+		/*!
+		 * \brief Default multi-threaded environment infrastructure.
+		 *
+		 * \since
+		 * v.5.5.19
+		 */
+		namespace default_mt {
+			/*!
+			 * \brief Implementation details.
+			 *
+			 * \since
+			 * v.5.5.19
+			 */
+			namespace impl {}
+		} /* namespace default_mt */
+
+		/*!
+		 * \brief Simple single-threaded environment infrastructure with
+		 * thread safety.
+		 *
+		 * \since
+		 * v.5.5.19
+		 */
+		namespace simple_mtsafe {
+			/*!
+			 * \brief Implementation details.
+			 *
+			 * \since
+			 * v.5.5.19
+			 */
+			namespace impl {}
+		} /* namespace simple_mtsafe */
+
+		/*!
+		 * \brief Simple single-threaded environment infrastructure
+		 * without thread safety.
+		 *
+		 * \since
+		 * v.5.5.19
+		 */
+		namespace simple_not_mtsafe {
+			/*!
+			 * \brief Implementation details.
+			 *
+			 * \since
+			 * v.5.5.19
+			 */
+			namespace impl {}
+		} /* namespace simple_not_mtsafe */
+
+		/*!
+		 * \brief Various reusable stuff which can be used in implementation
+		 * of single-threaded environment infrastructures.
+		 *
+		 * \since
+		 * v.5.5.19
+		 */
+		namespace st_reusable_stuff {
+			/*!
+			 * \brief Implementation details.
+			 *
+			 * \since
+			 * v.5.5.19
+			 */
+			namespace impl {}
+		} /* namespace st_reusable_stuff */
+
+	} /* namespace env_infrastructures */
+
+} /* namespace so_5 */
+
+// vim:ft=cpp.doxygen
+
