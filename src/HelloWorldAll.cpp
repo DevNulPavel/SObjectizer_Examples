@@ -6,7 +6,7 @@
 struct MessageHelloToAll{
     // Имя отправителя
     const std::string m_sender;
-    // Почтовый ящик, канал передачи данных?
+    // Почтовый ящик, канал передачи сообщения назад?
     const so_5::mbox_t m_mbox;
 };
 
@@ -15,7 +15,7 @@ struct MessageHelloToYou{
     const std::string m_sender;
 };
 
-// Класс агента
+// Класс актора
 class TestAgent: public so_5::agent_t {
 public:
     TestAgent(context_t ctx, std::string agent_name);
@@ -84,11 +84,11 @@ void TestAgent::evt_hello_to_you(const MessageHelloToYou& evt_data) {
 void init( so_5::environment_t & env ) {
     // Создание и регистрация кооперативного исполнения
     env.introduce_coop([](so_5::coop_t& coop) {
-        // Созрание агентов
+        // Созрание акторов
         coop.make_agent<TestAgent>("alpha");
         coop.make_agent<TestAgent>("beta");
         coop.make_agent<TestAgent>("gamma");
-    } );
+    });
     
     // Даем какое-то время на исполнение
     std::this_thread::sleep_for(std::chrono::milliseconds(10000));
@@ -99,7 +99,8 @@ void init( so_5::environment_t & env ) {
 
 int helloWorldAll(){
     try{
-        so_5::launch( &init );
+        // Запускаем работу с акторами
+        so_5::launch(&init);
     }catch(const std::exception& ex){
         std::cerr << "Error: " << ex.what() << std::endl;
         return 1;

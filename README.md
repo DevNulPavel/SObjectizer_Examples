@@ -1,3 +1,3 @@
-# Библитека AsyncCplusPlus
+# Изучение библиотеки SObjectizer
 
-https://github.com/Amanieu/asyncplusplus
+https://github.com/eao197/so-5-5
