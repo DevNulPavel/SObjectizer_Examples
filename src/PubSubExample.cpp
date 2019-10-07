@@ -7,9 +7,9 @@
 
 //using namespace std::literals;
 
-struct acquired_value {
-    std::chrono::steady_clock::time_point acquired_at_;
-    int value_;
+struct AcquiredMessage {
+    std::chrono::steady_clock::time_point acquiredAt;
+    int value;
 };
 
 class Producer final : public so_5::agent_t {
@@ -50,27 +50,30 @@ private:
     
     void on_timer(so_5::mhood_t<AcquisitionTime>) {
         // Отсылаем следующее значение счетчика
-        so_5::send<acquired_value>(_mailBox, std::chrono::steady_clock::now(), ++_counter);
+        so_5::send<AcquiredMessage>(_mailBox, std::chrono::steady_clock::now(), ++_counter);
     }
 };
 
-class consumer final : public so_5::agent_t {
-    const so_5::mbox_t board_;
-    const std::string name_;
-    
-    void on_value(mhood_t<acquired_value> cmd) {
-        std::cout << name_ << ": " << cmd->value_ << std::endl;
+class Consumer final : public so_5::agent_t {
+public:
+    Consumer(context_t ctx, so_5::mbox_t mailBox, std::string name):
+        so_5::agent_t(std::move(ctx)),
+        _mailBox(std::move(mailBox)),
+        _name(std::move(name)){
     }
     
 public:
-    consumer(context_t ctx, so_5::mbox_t board, std::string name)
-    :  so_5::agent_t{std::move(ctx)}
-    ,  board_{std::move(board)}
-    ,  name_{std::move(name)}
-    {}
-    
     void so_define_agent() override {
-        so_subscribe(board_).event(&consumer::on_value);
+        so_subscribe(_mailBox).event(&Consumer::on_value);
+    }
+    
+private:
+    const so_5::mbox_t _mailBox;
+    const std::string _name;
+
+private:
+    void on_value(so_5::mhood_t<AcquiredMessage> cmd) {
+        std::cout << _name << ": " << cmd->value << std::endl;
     }
 };
 
@@ -78,14 +81,14 @@ int pubSubExample() {
     // Создаем среду исполнения для акторов
     so_5::launch([](so_5::environment_t & env) {
         // Создаем общий канал
-        so_5::mbox_t board = env.create_mbox();
+        so_5::mbox_t sharedMailBox = env.create_mbox();
         // Создаем кооперативную многозадачностью (группу акторов)
-        env.introduce_coop([board](so_5::coop_t& coop) {
+        env.introduce_coop([sharedMailBox](so_5::coop_t& coop) {
             // Создаем акторов, которые работают с общим каналом
-            coop.make_agent<Producer>(board);
+            coop.make_agent<Producer>(sharedMailBox);
             
-            coop.make_agent<consumer>(board, "first");
-            coop.make_agent<consumer>(board, "second");
+            coop.make_agent<Consumer>(sharedMailBox, "First");
+            coop.make_agent<Consumer>(sharedMailBox, "Second");
         });
         
         std::this_thread::sleep_for(std::chrono::seconds(4));
