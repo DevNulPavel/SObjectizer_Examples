@@ -6,10 +6,10 @@
 #include "ChannelExample.h"
 
 int main(){
-    return channelExample();
+    //return channelExample();
     //return blinkingLedExample();
     //return pubSubExample();
-    //return pingPongExample();
+    return pingPongExample();
     //return helloWorldAll();
     //return helloWorldSimple();
 }

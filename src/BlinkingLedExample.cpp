@@ -21,7 +21,7 @@ public:
         so_change_state(off); //this >>= off;
         
         // Отключеное состояние может переходить во включеное по сообщению TurnOnOff
-        off.just_switch_to<TurnOnOff>(blinking);
+        //off.just_switch_to<TurnOnOff>(blinking);
         
         // Моргающее состояние может переходить в выключеное по сообщению TurnOnOff
         blinking.just_switch_to<TurnOnOff>(off);
@@ -39,13 +39,36 @@ public:
             .time_limit(std::chrono::milliseconds(500), blinkingLedOn);
     }
     
+public:
+    // Перегруженные методы для работы с системой агентов
+    
+    // Вызывается при инициализации актора
+    virtual void so_define_agent() override {
+        // Толкьо в данном состоянии будет вызываться обработчик сообщения
+        so_subscribe_self().in(off).event(&BlinkingLed::onDisableStateMessage);
+    }
+    
+    // Вызывается при старте работы данного актора
+    virtual void so_evt_start() override {
+    }
+    
+    // Вызывается на завершение работы данного актора
+    virtual void so_evt_finish() override {
+    }
+    
 private:
     // Список состояний
     so_5::state_t off;
     so_5::state_t blinking;
     so_5::state_t blinkingLedOn;
     so_5::state_t blinkingLedOff;
-
+    
+private:
+    // Можем по сообщению руками сменить состояние, вместо just_switch_to
+    void onDisableStateMessage(so_5::mhood_t<TurnOnOff> message){
+        std::cout << "Message on disabled state" << std::endl;
+        so_change_state(blinking);
+    }
 };
 
 int blinkingLedExample() {
