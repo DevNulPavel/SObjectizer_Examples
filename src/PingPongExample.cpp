@@ -164,6 +164,7 @@ int pingPongExample() {
             auto pongerActor = coop.make_agent<Ponger>("Coop");
             
             // Назначаем каждому из них канал другого, чтобы они могли друг с другом обмениваться сообщениями
+            // Специально после, когда сформированы объекты
             pongerActor->setSendMailBox(pingerActor->so_direct_mbox());
             pingerActor->setSendMailBox(pongerActor->so_direct_mbox());
         });
@@ -181,6 +182,11 @@ int pingPongExample() {
             env.register_agent_as_coop("Coop test 1", std::move(pingerActor));
             env.register_agent_as_coop("Coop test 2", std::move(pongerActor));
         }*/
+    },
+    [](so_5::environment_params_t& params) {
+        // Разрешаем трассировку механизма доставки сообщений.
+        // Направляем трассировочные сообщения на стандартый поток вывода.
+        params.message_delivery_tracer(so_5::msg_tracing::std_cout_tracer());
     });
     
     return 0;
